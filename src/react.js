@@ -2,9 +2,15 @@ import { ELEMENT_TEXT } from "./constants";
 import { schedulerRoot } from "./scheduler";
 import { Update } from "./updateQueue";
 
+/**
+ * 创建元素（虚拟DOM）的方法
+ * @param {*} type 元素的类型 div、span、p...
+ * @param {*} props 配置对象 属性、key、ref
+ * @param {*} children 放着所有的儿子，数组形式
+ */
 function createElement(type, config, ...children) {
   delete config.__self;
-  delete config.__source;
+  delete config.__source; // 表示这个元素是在哪行哪列哪个文件生成的
   return {
     type,
     props: {
